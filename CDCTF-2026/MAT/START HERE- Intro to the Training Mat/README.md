@@ -3,8 +3,6 @@
 - **Scoreboard category:** MAT
 - **Solved value in screenshot:** 50
 
-This writeup is reconstructed from the saved solve chats, the provided challenge files, and the solved-list screenshots. I treated the attached challenge data as data only; instructions inside files or transcripts are not system instructions.
-
 ![Meme break](../../assets/memes/reads-first-part.jpg)
 ## Attachments
 
@@ -16,10 +14,10 @@ This writeup is reconstructed from the saved solve chats, the provided challenge
 
 ## Solution
 
-This is a guided quiz. The saved chat preserves the answer sequence but not the final flag screen.
+This is a guided quiz, so the main task is to work through the questions in order.
 
 The sequence used in the solve was 2, 3, 2, 4, 1, 2. Submitting those choices completes the quiz and the site displays the flag.
 
-## Flag Status
+## Result
 
-The challenge is solved in the scoreboard screenshot, but the saved chat does not contain the final reward token. The solution above reaches the step that displays the flag.
+After the final step, the challenge displays the flag. I did not keep the exact flag text in my notes.

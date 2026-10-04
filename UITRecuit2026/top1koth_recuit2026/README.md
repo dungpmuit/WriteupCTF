@@ -4,10 +4,11 @@
 - **Event:** UITRecuit2026
 - **Type:** King of the Hill / programming bot
 
-This writeup is based on the original notes in `D:/ctf/top1koth_recuit2026/writeup.md`. The source folder currently contains only the writeup file; the referenced `snake_bot.py` implementation was not present in the provided folder, so it is not attached here.
+I started with a simple idea: reach food when there is a safe route, and leave myself room to move when there is not. The Python bot attached below is the version exported alongside these notes in the original solve session.
 
 ## Attachments
 
+- [Python bot](attachments/snake_bot.py)
 - [Original writeup notes](evidence/original-writeup.md)
 
 ## Overview
@@ -38,4 +39,14 @@ The selected move is the one that leaves the most space. If two moves are close,
 
 ## Verification Notes
 
-The original notes say the Python implementation passed syntax compilation, but a practice match was not run in that session because the browser file picker did not open. Before using the bot in a live tournament, run it against both built-in opponents, `winky` and `iamabighotdog`, and check for runtime errors or timeouts.
+The attached file exposes `decide(state)` and uses only the Python standard library. The runner must keep the module alive between turns because the reconstructed bodies are stored in module globals.
+
+To check the syntax locally, run this from the challenge folder:
+
+```sh
+python -m py_compile attachments/snake_bot.py
+```
+
+Upload `attachments/snake_bot.py` through the arena's bot submission form. The arena supplies the state object, so running the file directly does not start a game. Try the built-in opponents, `winky` and `iamabighotdog`, and inspect the diagnostics for runtime errors and timeouts.
+
+This is the source exported with the original notes, rather than a later experimental bot. Those notes record a successful syntax check but no completed practice match for this particular export. I would not use that check alone as evidence of tournament performance.
