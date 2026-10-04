@@ -1,0 +1,152 @@
+[
+  {
+    "source": "D:\\ctf\\cdCTF\\VAT\\Value-Added Tax\\VAT.JPG",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\VAT\\Value-Added Tax\\attachments\\VAT.JPG",
+    "sha256": "954f749b33f6e6b8d6ec709294c041915491c88e552b1c8548e258019de1bf57",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\VAT\\Luke Luck Likes Lakes 67\\lukelucklake67.png",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\VAT\\Luke Luck Likes Lakes 67\\attachments\\lukelucklake67.png",
+    "sha256": "37137eb888711b62f225d0207a58204b92e1f502167e875d742996128cdabe5c",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\VAT\\luke lake 69\\lucklucklake69.png",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\VAT\\Luke Luck Likes Lakes 69\\attachments\\lucklucklake69.png",
+    "sha256": "1675421f90aa42ed1ef7985b60aa28ec07815822184a3c7895234a063f22cdc3",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\VAT\\Verbal Authentication Transmissions 15 Going HAM\\captured_radio.mp3",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\VAT\\Verbal Authentication Transmissions 1-5- Going HAM\\attachments\\captured_radio.mp3",
+    "sha256": "36a9039cd0dfe8416da8acc64a6cd1d4222da5e0312617cb72aff74cadca1d07",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\VAT\\Verbal Authentication Transmissions 25 LARP\\captured_call_LARP.mp3",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\VAT\\Verbal Authentication Transmissions 2-5- LARP\\attachments\\captured_call_LARP.mp3",
+    "sha256": "a26eb395dc482df6286e096febf22adafad30dd11b55828e5200d43e0c9ee6a7",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\VAT\\Verbal Authentication Transmissions 25 LARP\\leaked_aliases.txt",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\VAT\\Verbal Authentication Transmissions 2-5- LARP\\attachments\\leaked_aliases.txt",
+    "sha256": "6a721d050c7e54908013570f8c37245dbac5ebb6f508bbad1b769df552fc396c",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\VAT\\Verbal Authentication Transmissions 35 Pretty Good Passphrase\\VAT_key",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\VAT\\Verbal Authentication Transmissions 3-5- Pretty Good Passphrase\\attachments\\VAT_key",
+    "sha256": "28715250c107ef4a3b2bbe611df4a457256c865c091087a0eaf3a6e0875fd03a",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\VAT\\Verbal Authentication Transmissions 35 Pretty Good Passphrase\\voicemail.mp3",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\VAT\\Verbal Authentication Transmissions 3-5- Pretty Good Passphrase\\attachments\\voicemail.mp3",
+    "sha256": "437d7631ee3ee3aaf15ddb54383609b3f550c4feb5bbd08814c87ccd0b4e613a",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\VAT\\Verbal Authentication Transmissions 45 What the helly\\OTP_CODES_VAT.mp3",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\VAT\\Verbal Authentication Transmissions 4-5- What the helly\\attachments\\OTP_CODES_VAT.mp3",
+    "sha256": "56c3bbfa042f4e6ae46e577152260d9f1414ae199f09c0c0c3dcba7897d5e11c",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\VAT\\Verbal Authentication Transmissions 55 You get all that\\captured_cred_call.mp3",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\VAT\\Verbal Authentication Transmissions 5-5 - You get all that\\attachments\\captured_cred_call.mp3",
+    "sha256": "687fecc9b0868355f0af53b347d8a3a5e918522d936cda0cd46d89504799f803",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\VAT\\Verbal Authentication Transmissions 55 You get all that\\cred_call_transcript.txt",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\VAT\\Verbal Authentication Transmissions 5-5 - You get all that\\attachments\\cred_call_transcript.txt",
+    "sha256": "41eb65db34be1d35090b7d694d2bd065d1afbee97d57172f3aa9ead6aab00fea",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\HAT\\Buckethead\\buckethead_zombie.png",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\HAT\\Buckethead\\attachments\\buckethead_zombie.png",
+    "sha256": "73102630b6e3a87d1a63501572896dbfe42a1dcc4de30595a64237eb7f424e6c",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\HAT\\bring coines\\bringcoines.exe",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\HAT\\bring coines\\attachments\\bringcoines.exe",
+    "sha256": "576db2ac5c6657189ea446c594092c7b7d0ad5d84f3246b1165d2a372b39c3c6",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\HAT\\You Shall not Pass!\\you_shall_not_pass.7z",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\HAT\\You Shall not Pass!\\attachments\\you_shall_not_pass.7z",
+    "sha256": "e93f644f18a83ba135d3c474c6270aaa101b35b10a7c338a71ec825bd19dae87",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\BAT\\Bat png that I found on the internet and downloaded\\BatPic.png",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\BAT\\Bat png that I found on the internet and downloaded\\attachments\\BatPic.png",
+    "sha256": "167fcebef6ea0647a9137d47d1a8149197d4bd82c98c0746b4734dec2d2685ea",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\BAT\\CCU Banking Access Terminal (12)\\ccu-banking-terminal.zip",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\BAT\\CCU Banking Access Terminal (1-2)\\attachments\\ccu-banking-terminal.zip",
+    "sha256": "a12270d25c74c7a0a1f83f2cc88ea630f457aa65e8a83c5e08a877664197f161",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\SPAT\\ROCKS\\flag.txt.enc",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\SPAT\\ROCKS\\attachments\\flag.txt.enc",
+    "sha256": "34a69189de3f41bdc5aed9be9ada6cdf83064a3bafe8ac7f21bf72db034977b0",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\SPAT\\ROCKS\\private_key.pem",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\SPAT\\ROCKS\\attachments\\private_key.pem",
+    "sha256": "3f552ad7cf74fb02fce035c88a672355d269c7b33d795077f4444433b41a1380",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\SPAT\\Blake's Bride\\blake.png",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\SPAT\\Blake's Bride\\attachments\\blake.png",
+    "sha256": "60cfcb420af6bd3b30b6fd0a9ee9abcb5584a2d47cb179dafc8448dac673178c",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\MAT\\Cryptography Training Mat\\brainROT.txt",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\MAT\\Cryptography Training Mat\\attachments\\brainROT.txt",
+    "sha256": "72a7f3fbaa7eb18501608ae3fda008493a84cd449f7251afcf7ee7c9f127e0ed",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\MAT\\Cryptography Training Mat\\XORtation.txt",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\MAT\\Cryptography Training Mat\\attachments\\XORtation.txt",
+    "sha256": "6ac3a2d63cb9a463950c56c0c084989f0d1d0bf5237ded8ac2fbd1bee16bba7f",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\MAT\\Password Cracking Training Mat\\hashes.txt",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\MAT\\Password Cracking Training Mat\\attachments\\hashes.txt",
+    "sha256": "e56cadf0ddb747ad5c215528b29166b0f18e8f8d089dd97a089f931d24e9317e",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\MAT\\Reverse Engineering & Pwn Training Mat\\skippy.py",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\MAT\\Reverse Engineering & Pwn Training Mat\\attachments\\skippy.py",
+    "sha256": "de145548e96199e86daf737251d544cc88417c48eab1549d008e05a7d5cd4112",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\MAT\\Reverse Engineering & Pwn Training Mat\\static",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\MAT\\Reverse Engineering & Pwn Training Mat\\attachments\\static",
+    "sha256": "55ddd82713ecdcc10475a32491481d0c325d11994464d22b12233e4200f2d38b",
+    "status": "moved"
+  },
+  {
+    "source": "D:\\ctf\\cdCTF\\MAT\\Forensics Training Mat\\suspicious.xz",
+    "target": "D:\\ctf\\WriteupCTF\\CDCTF-2026\\MAT\\Forensics Training Mat\\attachments\\suspicious.xz",
+    "sha256": "9eed4778b09919b882670928dedcda98ac8962e95b1be338734076bdec9da9e5",
+    "status": "moved"
+  }
+]

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDCTF OSINT Training MAT</title>
+    <link rel="icon" type="image/x-icon" href="favicon1.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #333333;
+            --heading: #111111;
+            --accent: #9834eb;
+            --accent-secondary: #2563eb;
+            --intro-bg: #f9fafb;
+            --intro-border: #e5e7eb;
+            --tag-bg: #eef0f3;
+            --tag-text: #333333;
+            --question-border: #dddddd;
+            --incorrect-border: #dc2626;
+            --incorrect-bg: #fef2f2;
+            --table-border: #e5e7eb;
+        }
+
+        [data-theme="dark"] {
+            --bg: #121212;
+            --text: #e0e0e0;
+            --heading: #ffffff;
+            --accent: #c792ff;
+            --accent-secondary: #6ea8ff;
+            --intro-bg: #1e1e1e;
+            --intro-border: #333333;
+            --tag-bg: #2a2a2a;
+            --tag-text: #e0e0e0;
+            --question-border: #3a3a3a;
+            --incorrect-border: #f87171;
+            --incorrect-bg: #3a1f1f;
+            --table-border: #333333;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 0.9rem;
+            background: var(--intro-bg);
+            border: 1px solid var(--intro-border);
+            color: var(--text);
+            border-radius: 999px;
+            font-family: Roboto, Arial, Helvetica, sans-serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+            z-index: 100;
+        }
+        .theme-toggle:hover { border-color: var(--accent); }
+
+        .welcome-banner {
+            max-width: 600px;
+            margin: 2rem auto 0;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--accent-secondary), var(--accent));
+            color: #fff;
+            border-radius: 8px;
+            font-family: Roboto, Arial, Helvetica, sans-serif;
+        }
+        .welcome-banner h1 { margin: 0 0 0.5rem; font-size: 1.8rem; }
+        .welcome-banner p { margin: 0; font-size: 1rem; opacity: 0.9; }
+
+        .intro {
+            max-width: 600px;
+            margin: 1.5rem auto;
+            padding: 1.5rem;
+            background: var(--intro-bg);
+            border: 1px solid var(--intro-border);
+            border-radius: 8px;
+            font-family: Roboto, Arial, Helvetica, sans-serif;
+            color: var(--text);
+            transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+        }
+        .intro h2 { margin: 0 0 0.75rem; font-size: 1.4rem; color: var(--heading); }
+        .intro p { margin: 0 0 0.75rem; line-height: 1.5; font-size: 0.95rem; }
+        .intro h3 { margin: 1rem 0 0.5rem; font-size: 1.1rem; color: var(--accent); }
+        .intro ul { margin: 0 0 0.5rem; padding-left: 1.25rem; }
+        .intro ul li { margin-bottom: 0.3rem; font-size: 0.95rem; line-height: 1.4; }
+        .intro code {
+            background: var(--tag-bg);
+            color: var(--text);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        .intro table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.5rem 0 1rem;
+            font-size: 0.9rem;
+        }
+        .intro table th, .intro table td {
+            text-align: left;
+            padding: 0.5rem;
+            border-bottom: 1px solid var(--table-border);
+        }
+        .intro table th { color: var(--heading); }
+        .intro .tag {
+            display: inline-block;
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            padding: 0.15rem 0.5rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            margin: 0.1rem 0.2rem 0.1rem 0;
+        }
+
+        .quiz-container { max-width: 600px; margin: 2rem auto; font-family: Roboto, Arial, Helvetica, sans-serif; }
+        .quiz-question {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border: 1px solid var(--question-border);
+            border-radius: 8px;
+            color: var(--text);
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+        .quiz-question.incorrect-question { border-color: var(--incorrect-border); background-color: var(--incorrect-bg); }
+        .quiz-question-title { font-weight: bold; margin-bottom: 0.4rem; color: var(--heading); }
+        .quiz-description { margin: 0 0 0.3rem; color: var(--text); font-size: 0.95rem; }
+        .quiz-instructions { margin: 0 0 0.6rem; color: var(--text); opacity: 0.7; font-size: 0.85rem; font-style: italic; }
+        .quiz-options label { display: block; margin: 0.4rem 0; cursor: pointer; }
+        .quiz-submit { padding: 0.6rem 1.2rem; background: var(--accent-secondary); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; }
+        .quiz-submit:hover { background: var(--accent); }
+        .quiz-result { margin-top: 1rem; font-weight: bold; }
+        .correct { color: #16a34a; }
+        .incorrect { color: #dc2626; }
+        [data-theme="dark"] .correct { color: #4ade80; }
+        [data-theme="dark"] .incorrect { color: #f87171; }
+    </style>
+</head>
+
+<body>
+ <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+
+ <section class="welcome-banner">
+    <h1>Welcome to the CDCTF Open Source Intelligence Training MAT</h1>
+    <p>Learn about OSINT and solve the following challenges to get the flag!</p>
+ </section>
+
+ <section class="intro">
+    <h2>What is Open Source Intelligence?</h2>
+    <p>Open source intelligence, or OSINT, is the practice of collecting, processing, and analyzing data from public sources to answer specific questions or assess risks. It does not mean open-source software; instead, it uses any information that anyone can legally view, read, or download.</p>
+    <p>Open Source Intelligence (OSINT) in a Capture The Flag (CTF) competition is a category of challenges focused on gathering, verifying, and analyzing publicly available data to find a hidden string or file called a "flag". It tests your web search skills, digital forensics, and investigative logic.</p>
+
+    <h3>Common Sources of OSINT</h3>
+    <ul>
+        <li>Social media sites and chat apps</li>
+        <li>Public government files and court records</li>
+        <li>News articles and media broadcasts</li>
+        <li>Academic papers and books</li>
+        <li>Commercial databases and public registries</li>
+    </ul>
+
+    <h3>Common OSINT Challenge Types</h3>
+    <ul>
+        <li><strong>Geolocation</strong>: Finding the exact spot where a photo was taken by looking at street signs, building shapes, shadows, or image metadata.</li>
+        <li><strong>Username Tracking</strong>: Following a target username across social media, forums, or developer sites to uncover personal details or hidden posts.</li>
+        <li><strong>Historical Data</strong>: Using web archives to find deleted pages, old website versions, or forgotten assets.</li>
+        <li><strong>Database Traversal</strong>: Pivoting through one or more public security databases (vulnerability databases, device search engines, registries) by following clues from one record to the next.</li>
+        <li><strong>People Tracing</strong>: Piecing together corporate or personal footprints left behind in public registries, press releases, or code repositories.</li>
+    </ul>
+ </section>
+
+ <section class="intro">
+    <h2>Common OSINT Tools</h2>
+    <p>You don't need to reinvent the wheel for most OSINT challenges — a handful of well-known tools cover the majority of common tasks. Here are a few worth getting familiar with before you dive into the challenges below.</p>
+    <ul>
+        <li><strong><a href="https://osintframework.com/" target="_blank" rel="noopener noreferrer">OSINT Framework</a></strong>: Not a single tool, but a categorized directory of OSINT tools and resources organized by data type (usernames, emails, images, etc.) — a great starting point when you're not sure what to use.</li>
+        <li><strong><a href="https://www.maltego.com/" target="_blank" rel="noopener noreferrer">Maltego</a></strong>: A graph-based tool for mapping relationships between people, domains, companies, and other entities, useful for visualizing how pieces of a people-tracing or corporate-footprint challenge connect.</li>
+        <li><strong><a href="https://github.com/laramies/theHarvester" target="_blank" rel="noopener noreferrer">theHarvester</a></strong>: Gathers emails, subdomains, hostnames, and related info for a target domain from public sources, handy for reconnaissance-style challenges.</li>
+        <li><strong><a href="https://github.com/sherlock-project/sherlock" target="_blank" rel="noopener noreferrer">Sherlock</a></strong>: Searches for a given username across a large number of social media and web platforms, useful for username-tracking challenges.</li>
+        <li><strong><a href="https://exiftool.org/" target="_blank" rel="noopener noreferrer">ExifTool</a></strong>: Reads and extracts metadata (including GPS coordinates, camera model, and timestamps) embedded in image and document files, often the very first step in a geolocation challenge.</li>
+        <li><strong><a href="https://www.shodan.io/" target="_blank" rel="noopener noreferrer">Shodan</a></strong>: A search engine for internet-connected devices rather than web pages, useful when a challenge points you toward a specific exposed device or service.</li>
+        <li><strong><a href="https://web.archive.org/" target="_blank" rel="noopener noreferrer">Wayback Machine</a></strong>: Lets you view archived snapshots of web pages over time, essential for historical-data challenges involving deleted or changed content.</li>
+    </ul>
+    <h3>A Note Before You Start</h3>
+    <p>You won't need all of these tools for every challenge, and some challenges can be solved with nothing more than a careful web search. Treat this list as a toolbox to pull from, not a checklist to complete.</p>
+ </section>
+
+ <section class="intro">
+    <h2>Example Geolocation Challenge</h2>
+    <p>We pulled the location metadata off an image: 45°11'07.3"N 109°14'50.0"W. Can you help identify the name of the city it was taken in? The flag format is cdctf{City Name}</p>
+ </section>
+
+ <section class="quiz-container" id="quizPart1"></section>
+
+ <section class="intro">
+    <h2>Before You Continue</h2>
+    <p>Now that you've narrowed the coordinates down to a state, take a moment to think about how you'd pin down the exact city.</p>
+    <h3>Tips</h3>
+    <ul>
+        <li>Zoom in on the map tool to check nearby town names</li>
+        <li>Cross-reference with the state you identified in Step 2</li>
+    </ul>
+ </section>
+
+ <section class="quiz-container" id="quizPart2"></section>
+
+ <section class="intro">
+    <h2>Example Database Traversal Challenge</h2>
+    <p>Not every OSINT challenge stops at one source. Sometimes you need to pivot from one public database to another, using a clue found in the first to search the second. This is common with security research: a vague vulnerability description can lead you to a specific CVE entry, and that entry can lead you to the exact detail the challenge is asking for.</p>
+    <p><em>"Crimson Credit Union's vulnerability scanners flagged an issue in one of our IoT brokers running Moquette. The flaw in its pattern-based ACL rules implementation allows an attacker to bypass authentication checks using missing input neutralization."</em></p>
+    <p>Identify which public database holds records like this, find the specific CVE entry that matches the memo's description, then use the details in that entry to determine the exact firmware version it affects. The flag format is <code>cdctf{CVE-ID}</code>.</p>
+ </section>
+
+ <section class="quiz-container" id="quizPart3"></section>
+
+  <section class="intro">
+    <h2>Where to go next...</h2>
+    <p>If you liked this, try out <strong>Value-Added Tax</strong>!</p>
+ </section>
+
+ <script>
+    // ----- Dark mode toggle -----
+    const themeToggle = document.getElementById('themeToggle');
+
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggle.textContent = '☀️ Light Mode';
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeToggle.textContent = '🌙 Dark Mode';
+      }
+    }
+
+    const savedTheme = localStorage.getItem('cdctf-theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+      applyTheme(newTheme);
+      localStorage.setItem('cdctf-theme', newTheme);
+    });
+
+    // ----- Quiz -----
+    const questions = [
+      {
+        id: 'q1',
+        title: "Step 1: Let's identify what tool to use to solve this challenge!",
+        description: 'Choose the <em>best</em> tool to use to solve this challenge.',
+        instructions: 'Select the best answer.',
+        options: [
+          { value: 'a', label: 'Instagram' },
+          { value: 'b', label: 'Internet Archive' },
+          { value: 'c', label: 'Public Databases' },
+          { value: 'd', label: 'Google Maps' }
+        ],
+        answer: 'd'
+      },
+      {
+        id: 'q2',
+        title: 'Step 2: Use the tool you selected above to search the coordinates on the map.',
+        description: 'Select the state the tool revealed the coordinates to be in.',
+        instructions: 'Select the best answer.',
+        options: [
+          { value: 'a', label: 'Montana' },
+          { value: 'b', label: 'Alabama' },
+          { value: 'c', label: 'West Virginia' },
+          { value: 'd', label: 'Georgia' }
+        ],
+        answer: 'a'
+      },
+      {
+        id: 'q3',
+        title: 'Step 3: Format the flag to enter into the CDCTF!',
+        description: 'Hint: The flag format is stated as cdctf{City Name}.',
+        instructions: 'Select the best answer. This flag will not be accepted for points, you will get one if you complete all the questions.',
+        options: [
+          { value: 'a', label: 'cdctf{redlodge}' },
+          { value: 'b', label: 'cdctf{Red Lodge}' },
+          { value: 'c', label: 'cdctf{REDLODGE}' },
+          { value: 'd', label: 'cdctf{Red_Lodge}' }
+        ],
+        answer: 'b'
+      },
+      {
+        id: 'q4',
+        title: 'Step 4: Which type of public database would hold a record like the one described in the memo?',
+        description: 'Think about where security researchers publish structured records of known software and firmware flaws.',
+        instructions: 'Select the best answer.',
+        options: [
+          { value: 'a', label: 'A public vulnerability / CVE database' },
+          { value: 'b', label: 'A domain WHOIS registry' },
+          { value: 'c', label: 'A social media platform' },
+          { value: 'd', label: 'A web archive / Wayback Machine' }
+        ],
+        answer: 'a'
+      },
+      {
+        id: 'q5',
+        title: 'Step 5: Using the tool identified above, find a CVE for Moquette that matches the description.',
+        description: 'Think of what keywords will best produce a search result matching the description.',
+        instructions: 'Select the best answer.',
+        options: [
+          { value: 'a', label: 'v0.0.0 – v0.11.0' },
+          { value: 'b', label: 'v0.0.0 – v0.18.1' },
+          { value: 'c', label: 'v0.1.5 – v3.0.0' },
+          { value: 'd', label: 'v0.1.5 and later' }
+        ],
+        answer: 'b'
+      },
+      {
+        id: 'q6',
+        title: 'Step 6: Format the flag using the CVE ID you found!',
+        description: 'Hint: The flag format is cdctf{CVE-ID}.',
+        instructions: 'Select the best answer. This flag will not be accepted for points, you will get one if you complete all the questions.',
+        options: [
+          { value: 'a', label: 'cdctf{CVE-2026-76816}' },
+          { value: 'b', label: 'cdctf{CVE-2026-95848}' },
+          { value: 'c', label: 'cdctf{CVE-2026-67232}' },
+          { value: 'd', label: 'cdctf{CVE-2026-85724}' }
+        ],
+        answer: 'd'
+      }
+    ];
+
+    const groupBoundaries = [2, 3, questions.length];
+
+    function renderQuestionGroup(group, startIndex) {
+      return group.map((q, i) => {
+        const optionsHtml = q.options.map(opt =>
+          `<label><input type="radio" name="${q.id}" value="${opt.value}"> ${opt.label}</label>`
+        ).join('\n');
+
+        return `
+          <div class="quiz-question" data-question="${q.id}">
+            <p class="quiz-question-title">${startIndex + i + 1}. ${q.title}</p>
+            <p class="quiz-description">${q.description}</p>
+            <p class="quiz-instructions">${q.instructions}</p>
+            <div class="quiz-options">
+              ${optionsHtml}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderQuiz() {
+      const group1 = questions.slice(0, groupBoundaries[0]);
+      const group2 = questions.slice(groupBoundaries[0], groupBoundaries[1]);
+      const group3 = questions.slice(groupBoundaries[1], groupBoundaries[2]);
+
+      document.getElementById('quizPart1').innerHTML = renderQuestionGroup(group1, 0);
+      document.getElementById('quizPart2').innerHTML = renderQuestionGroup(group2, groupBoundaries[0]);
+
+      document.getElementById('quizPart3').innerHTML =
+        renderQuestionGroup(group3, groupBoundaries[1]) +
+        `<button type="button" id="quizSubmit" class="quiz-submit">Submit</button>
+         <div id="quizResult" class="quiz-result"></div>`;
+
+      document.getElementById('quizSubmit').addEventListener('click', scoreQuiz);
+    }
+
+    function scoreQuiz() {
+      let score = 0;
+      const total = questions.length;
+
+      document.querySelectorAll('.quiz-question').forEach(q => {
+        q.classList.remove('incorrect-question');
+      });
+
+      questions.forEach(q => {
+        const selected = document.querySelector(`input[name="${q.id}"]:checked`);
+        const isCorrect = selected && selected.value === q.answer;
+
+        if (isCorrect) {
+          score++;
+        } else {
+          const questionEl = document.querySelector(`.quiz-question[data-question="${q.id}"]`);
+          if (questionEl) questionEl.classList.add('incorrect-question');
+        }
+      });
+
+      const resultEl = document.getElementById('quizResult');
+
+      // Hello cheeky peeker.
+      // If you can see this you probably don't need to do the full tutorial.
+      // Enjoy your free flag!
+
+      if (score === total) {
+        resultEl.textContent = 'Congratulations! You completed the CDCTF OSINT Training MAT! Here is your flag to enter on the CTFd platform: cdctf{0$int_my_BeLuv3d!}';
+        resultEl.className = 'quiz-result correct';
+      } else {
+        resultEl.textContent = `You scored ${score} out of ${total}. Incorrect questions are highlighted.`;
+        resultEl.className = 'quiz-result incorrect';
+      }
+    }
+
+    renderQuiz();
+ </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"7dbecd42c8f041b1a01c1dfeeccbadb1","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

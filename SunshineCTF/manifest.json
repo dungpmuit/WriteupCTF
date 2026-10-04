@@ -1,0 +1,162 @@
+[
+  {
+    "path": "README.md",
+    "sha256": "fcfb8c601eaf1c0aa1338905e85ea46eca74a70447c055bda94a450deda6c7f7",
+    "bytes": 1648
+  },
+  {
+    "path": "pwn/README.md",
+    "sha256": "c9b3844a99ac7e2457215ec121b9e9751f47769636b176aae9dba965bf4c30b0",
+    "bytes": 669
+  },
+  {
+    "path": "rev/README.md",
+    "sha256": "4762e039146e3568313722c4d7c860c4adb1d0b1fcfa3e968edd7cc373cca1a4",
+    "bytes": 144
+  },
+  {
+    "path": "web/README.md",
+    "sha256": "e13bebdda62e172d541f8a81971f78c09dcb3a2307960d81611cb231dc74447d",
+    "bytes": 409
+  },
+  {
+    "path": "pwn/cache-money/README.md",
+    "sha256": "d8368008144824b1d6c7ace32e83c47b05b3d158330a9974cf342143da8daf14",
+    "bytes": 1621
+  },
+  {
+    "path": "pwn/code-breaker/README.md",
+    "sha256": "aa2907c18be9c976a6dbeb8b15051dd1699264eefe5b3e27130b349df773b7f5",
+    "bytes": 1094
+  },
+  {
+    "path": "pwn/homemaker/README.md",
+    "sha256": "072876278239e6bea477445592817e4b602887fcbb339c7beb8ee528642883eb",
+    "bytes": 1056
+  },
+  {
+    "path": "pwn/mad-libs/README.md",
+    "sha256": "6ce24ee2a4df301c4c17c6cb6d62f7f30b293d501409d2a9b8ac4bd662000c75",
+    "bytes": 1105
+  },
+  {
+    "path": "pwn/print-print-revolution/README.md",
+    "sha256": "1bf0ba0e54ced68ea42743ab40ed57ed88de74af76192e152447a8a163465b4c",
+    "bytes": 1088
+  },
+  {
+    "path": "pwn/safe-house/README.md",
+    "sha256": "9dac28e4180ed169f4ce39e20cf400513a0b091a96b21096afeca08621642d3c",
+    "bytes": 1227
+  },
+  {
+    "path": "pwn/total-recall/README.md",
+    "sha256": "d0c95deb480cbf2e492b5afe82ca438affbd19a9474e05a8215b9c4b7fb1bd0e",
+    "bytes": 1031
+  },
+  {
+    "path": "pwn/cache-money/attachments/cache_money",
+    "sha256": "f6b0c44221ac029f16f2d833178ee3747272930deca900b7525956b766676f23",
+    "bytes": 14592
+  },
+  {
+    "path": "pwn/cache-money/attachments/ld-linux-x86-64.so.2",
+    "sha256": "854a9eb45875e00f48e1e89d40251317931d2d82555ab612d6090beba0c9f972",
+    "bytes": 236616
+  },
+  {
+    "path": "pwn/cache-money/attachments/libc.so.6",
+    "sha256": "c1e50a701d3245c8c45a1ba40151efe414ac41d2c9ae604087b4875e0d85c4fb",
+    "bytes": 2125328
+  },
+  {
+    "path": "pwn/code-breaker/attachments/code_breaker",
+    "sha256": "ed7201eba1a5a77159eb3332d5419e80f63a4002e8bf51363a7ffe4a8cd32bd8",
+    "bytes": 14640
+  },
+  {
+    "path": "pwn/code-breaker/attachments/ld-linux-x86-64.so.2",
+    "sha256": "854a9eb45875e00f48e1e89d40251317931d2d82555ab612d6090beba0c9f972",
+    "bytes": 236616
+  },
+  {
+    "path": "pwn/code-breaker/attachments/libc.so.6",
+    "sha256": "c1e50a701d3245c8c45a1ba40151efe414ac41d2c9ae604087b4875e0d85c4fb",
+    "bytes": 2125328
+  },
+  {
+    "path": "pwn/homemaker/attachments/homemaker",
+    "sha256": "a1e9c187ae8f8521eb179d562b0c3a50e8391cd41fa30c8083b2d47d809774e4",
+    "bytes": 14472
+  },
+  {
+    "path": "pwn/mad-libs/attachments/ld-linux-x86-64.so.2",
+    "sha256": "854a9eb45875e00f48e1e89d40251317931d2d82555ab612d6090beba0c9f972",
+    "bytes": 236616
+  },
+  {
+    "path": "pwn/mad-libs/attachments/libc.so.6",
+    "sha256": "c1e50a701d3245c8c45a1ba40151efe414ac41d2c9ae604087b4875e0d85c4fb",
+    "bytes": 2125328
+  },
+  {
+    "path": "pwn/mad-libs/attachments/mad_libs",
+    "sha256": "f65aca17be585e86c0cba30a629bdccfc9cc65129e850e26b916872065a2f1a1",
+    "bytes": 14584
+  },
+  {
+    "path": "pwn/print-print-revolution/attachments/revolution",
+    "sha256": "918483831ef0b27d0cfb8afa9e0341f38d0a296931ccc5f73ef80f5d610f8fa5",
+    "bytes": 14520
+  },
+  {
+    "path": "pwn/safe-house/attachments/service",
+    "sha256": "40c8993c1a853f62a5d7f19df147eb07e0745bb7ce10a874d6e58313668c19aa",
+    "bytes": 18504
+  },
+  {
+    "path": "pwn/safe-house/attachments/service.zip",
+    "sha256": "a0e739d0e65d6f347f4cbe8e418fe71db5508c09e371d4d0cb4fdc133b2b1349",
+    "bytes": 5042
+  },
+  {
+    "path": "pwn/total-recall/attachments/solve.py",
+    "sha256": "7de24e0bf7a53bf29708b9365edb54375273ba5908f60a2852570d9beaa17c36",
+    "bytes": 1789
+  },
+  {
+    "path": "pwn/total-recall/attachments/total_recall",
+    "sha256": "219750f55ff49e008fa02141affe2ce0db271b8791c672ef24671fda395a69de",
+    "bytes": 4416
+  },
+  {
+    "path": "rev/intmod/README.md",
+    "sha256": "dc1f97c3b5dcaaf1cfe75d935e89c16aabf0ecfd3761c0d236b365cbdca212ed",
+    "bytes": 1290
+  },
+  {
+    "path": "rev/intmod/attachments/intmod",
+    "sha256": "d697850eea882b87ff1cf02b4559117d7d1279d015ab248c4125cb4dc994b3b2",
+    "bytes": 44008
+  },
+  {
+    "path": "web/cookiecorp/README.md",
+    "sha256": "420a53ef0b8336435130069089a4eb1da980f63974300b2e3a628f213db92efb",
+    "bytes": 909
+  },
+  {
+    "path": "web/planetary-probe/README.md",
+    "sha256": "c0b183858887603e7556d911eb863e66a22b0a188a7fb025d3e084ccc38b75ef",
+    "bytes": 1062
+  },
+  {
+    "path": "web/used-goods-of-tomorrow/README.md",
+    "sha256": "cbd8ab9e1b475fc7c47d6056159843c5d588469a14dcfe00f122d3d69a3f8c70",
+    "bytes": 765
+  },
+  {
+    "path": "web/you-are-kidding-me/README.md",
+    "sha256": "f54ef9bb7335a04d65b59976851dd2117f9ddde88ddb391e3b7cae49dcd598e9",
+    "bytes": 880
+  }
+]

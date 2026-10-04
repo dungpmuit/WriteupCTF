@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDCTF Password Cracking Training MAT</title>
+    <link rel="icon" type="image/x-icon" href="favicon1.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #333333;
+            --heading: #111111;
+            --accent: #c2410c;
+            --accent-secondary: #1e40af;
+            --intro-bg: #f9fafb;
+            --intro-border: #e5e7eb;
+            --tag-bg: #eef0f3;
+            --tag-text: #333333;
+            --question-border: #dddddd;
+            --incorrect-border: #dc2626;
+            --incorrect-bg: #fef2f2;
+            --table-border: #e5e7eb;
+            --code-bg: #1e1e2e;
+            --code-text: #e5e7eb;
+        }
+
+        [data-theme="dark"] {
+            --bg: #121212;
+            --text: #e0e0e0;
+            --heading: #ffffff;
+            --accent: #fb923c;
+            --accent-secondary: #93c5fd;
+            --intro-bg: #1e1e1e;
+            --intro-border: #333333;
+            --tag-bg: #2a2a2a;
+            --tag-text: #e0e0e0;
+            --question-border: #3a3a3a;
+            --incorrect-border: #f87171;
+            --incorrect-bg: #3a1f1f;
+            --table-border: #333333;
+            --code-bg: #0b0b14;
+            --code-text: #e5e7eb;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 0.9rem;
+            background: var(--intro-bg);
+            border: 1px solid var(--intro-border);
+            color: var(--text);
+            border-radius: 999px;
+            font-family: Roboto, Arial, Helvetica, sans-serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+            z-index: 100;
+        }
+        .theme-toggle:hover { border-color: var(--accent); }
+
+        .welcome-banner {
+            max-width: 700px;
+            margin: 2rem auto 0;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            color: #fff;
+            border-radius: 8px;
+            font-family: Roboto, Arial, Helvetica, sans-serif;
+        }
+        .welcome-banner h1 { margin: 0 0 0.5rem; font-size: 1.8rem; }
+        .welcome-banner p { margin: 0; font-size: 1rem; opacity: 0.9; }
+
+        .warning {
+            max-width: 600px;
+            margin: 1.5rem auto;
+            padding: 1.25rem 1.5rem;
+            background: #fffbeb;
+            border: 1px solid #f59e0b;
+            border-left: 5px solid #f59e0b;
+            border-radius: 8px;
+            font-family: Roboto, Arial, Helvetica, sans-serif;
+            color: #78350f;
+        }
+        .warning h2 {
+            margin: 0 0 0.5rem;
+            font-size: 1.15rem;
+            color: #92400e;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .warning p { margin: 0 0 0.6rem; line-height: 1.5; font-size: 0.9rem; }
+        .warning p:last-child { margin-bottom: 0; }
+        .warning strong { color: #92400e; }
+        [data-theme="dark"] .warning {
+            background: #2d2410;
+            border-color: #d97706;
+            color: #fde68a;
+        }
+        [data-theme="dark"] .warning h2 { color: #fbbf24; }
+        [data-theme="dark"] .warning strong { color: #fbbf24; }
+
+        .intro {
+            max-width: 700px;
+            margin: 1.5rem auto;
+            padding: 1.5rem;
+            background: var(--intro-bg);
+            border: 1px solid var(--intro-border);
+            border-radius: 8px;
+            font-family: Roboto, Arial, Helvetica, sans-serif;
+            color: var(--text);
+            transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+        }
+        .intro h2 { margin: 0 0 0.75rem; font-size: 1.4rem; color: var(--heading); }
+        .intro p { margin: 0 0 0.75rem; line-height: 1.5; font-size: 0.95rem; }
+        .intro h3 { margin: 1rem 0 0.5rem; font-size: 1.1rem; color: var(--accent); }
+        .intro ul { margin: 0 0 0.5rem; padding-left: 1.25rem; }
+        .intro ul li { margin-bottom: 0.3rem; font-size: 0.95rem; line-height: 1.4; }
+        .intro code {
+            background: var(--tag-bg);
+            color: var(--text);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        .intro table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.5rem 0 1rem;
+            font-size: 0.85rem;
+        }
+        .intro table th, .intro table td {
+            text-align: left;
+            padding: 0.4rem 0.5rem;
+            border-bottom: 1px solid var(--table-border);
+        }
+        .intro table th { color: var(--heading); }
+        .intro .tag {
+            display: inline-block;
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            padding: 0.15rem 0.5rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            margin: 0.1rem 0.2rem 0.1rem 0;
+        }
+        .intro pre {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            margin: 0.5rem 0 1rem;
+        }
+        .intro pre code { background: none; padding: 0; font-size: inherit; color: inherit; }
+        .intro .hash-box {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            word-break: break-all;
+            margin: 0.5rem 0 1rem;
+        }
+
+        .quiz-container { max-width: 700px; margin: 2rem auto; font-family: Roboto, Arial, Helvetica, sans-serif; }
+        .quiz-question {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border: 1px solid var(--question-border);
+            border-radius: 8px;
+            color: var(--text);
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+        .quiz-question.incorrect-question { border-color: var(--incorrect-border); background-color: var(--incorrect-bg); }
+        .quiz-question-title { font-weight: bold; margin-bottom: 0.4rem; color: var(--heading); }
+        .quiz-description { margin: 0 0 0.3rem; color: var(--text); font-size: 0.95rem; }
+        .quiz-instructions { margin: 0 0 0.6rem; color: var(--text); opacity: 0.7; font-size: 0.85rem; font-style: italic; }
+        .quiz-options label { display: block; margin: 0.4rem 0; cursor: pointer; }
+        .quiz-question code {
+            background: var(--tag-bg);
+            color: var(--text);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        .quiz-text-input { width: 100%; padding: 0.5rem; border: 1px solid var(--question-border); border-radius: 4px; font-size: 1rem; box-sizing: border-box; background: var(--bg); color: var(--text); }
+        .quiz-submit { padding: 0.6rem 1.2rem; background: var(--accent); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; }
+        .quiz-submit:hover { background: var(--accent-secondary); }
+        .quiz-result { margin-top: 1rem; font-weight: bold; }
+        .correct { color: #16a34a; }
+        .incorrect { color: #dc2626; }
+        [data-theme="dark"] .correct { color: #4ade80; }
+        [data-theme="dark"] .incorrect { color: #f87171; }
+    </style>
+</head>
+
+<body>
+ <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+
+ <section class="welcome-banner">
+    <h1>Welcome to the CDCTF Password Cracking Training MAT</h1>
+    <p>Learn about hashes, hash types, and the basics of hashcat, then solve the following challenges to get the flag!</p>
+ </section>
+
+ <section class="warning">
+    <h2>⚠️ Before You Begin</h2>
+    <p><strong>Every flag you recover while working through this MAT — from each individual challenge step as well as the one awarded for completing the full quiz — must be submitted separately to the CDCTF CTFd platform.</strong></p>
+    
+    <p>There are <strong>3 total</strong> flags to submit in the CTFd platform for credit.</p>
+</section>
+
+ <section class="intro">
+    <h2>What is Password Cracking?</h2>
+    <p>Password cracking is the process of recovering a plaintext password from a hash — a scrambled, one-way representation of that password. In a CTF, you're usually handed a hash (or a file full of them) and asked to recover the original password to find a flag.</p>
+    <p>Cracking is almost always done offline: rather than repeatedly guessing a password against a live login form, you take the hash itself and run high volumes of guesses against it locally, checking each guess's hash against the target hash until you get a match.</p>
+    <h3>Common Approaches</h3>
+    <ul>
+        <li><strong>Dictionary attack</strong>: Trying every word in a wordlist (like <code>rockyou.txt</code>) as a candidate password.</li>
+        <li><strong>Brute force</strong>: Trying every possible combination of characters up to a given length. Effective on short/simple passwords, but slow as length grows.</li>
+        <li><strong>Rule-based attack</strong>: Taking a dictionary and mutating each word (capitalizing, adding numbers, swapping letters for symbols) to catch common human password habits.</li>
+    </ul>
+ </section>
+
+ <section class="intro">
+    <h2>Hashes and Hash Types</h2>
+    <p>A hash is the output of a one-way function: feed in a password, and you get back a fixed-length string that (in theory) can't be reversed back into the original input. Password systems store this hash instead of the plaintext password, so cracking means guessing inputs and comparing their hashes to the target rather than "decrypting" anything.</p>
+    <p>Different hashing algorithms produce different output lengths and formats, which is often your first clue about what you're dealing with before you even start cracking.</p>
+    <h3>Identifying a Hash by Sight</h3>
+    <table>
+        <tr><th>Hash Type</th><th>Output Length</th><th>Example Pattern</th></tr>
+        <tr><td>MD5</td><td>32 hex characters</td><td><code>5f4dcc3b5aa765d61d8327deb882cf99</code></td></tr>
+        <tr><td>SHA-1</td><td>40 hex characters</td><td><code>5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8</code></td></tr>
+        <tr><td>SHA-256</td><td>64 hex characters</td><td><code>5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d</code></td></tr>
+        <tr><td>NTLM</td><td>32 hex characters</td><td><code>8846f7eaee8fb117ad06bdd830b7586c</code></td></tr>
+        <tr><td>bcrypt</td><td>60 characters, starts with <code>$2a$</code>/<code>$2b$</code></td><td><code>$2b$12$KIX...</code></td></tr>
+    </table>
+    <p>Character count alone can't tell you everything (MD5 and NTLM look identical at a glance), but it's a fast way to narrow things down before reaching for an identification tool.</p>
+ </section>
+
+ <section class="intro">
+    <h2>Toolbox</h2>
+    <ul>
+        <li><strong><a href="https://hashcat.net/hashcat/" target="_blank" rel="noopener noreferrer">hashcat</a></strong>: Widely considered the fastest password recovery tool available, using your GPU to test huge numbers of candidate passwords per second. See the <a href="https://hashcat.net/wiki/" target="_blank" rel="noopener noreferrer">official hashcat wiki</a> for full documentation.</li>
+        <li><strong><a href="https://www.openwall.com/john/" target="_blank" rel="noopener noreferrer">John the Ripper</a></strong>: A versatile, CPU-based password cracker known for automatic hash-format detection and a flexible rule engine.</li>
+        <li><strong><a href="https://github.com/HashPals/Name-That-Hash" target="_blank" rel="noopener noreferrer">Name-That-Hash</a></strong>: A command-line tool that analyzes a hash string and suggests what algorithm likely produced it.</li>
+        <li><strong><a href="https://hashes.com/en/decrypt/hash" target="_blank" rel="noopener noreferrer">hashes.com</a></strong>: An online hash lookup/decryption service — handy for quick lookups of previously-cracked hashes, though it's not a substitute for running your own cracking tool on novel hashes.</li>
+        <li><strong>rockyou.txt</strong>: A large wordlist of real-world leaked passwords, commonly bundled with Kali Linux at <code>/usr/share/wordlists/rockyou.txt.gz</code>. It's the standard first wordlist to try in almost any CTF password cracking challenge.</li>
+    </ul>
+ </section>
+
+ <section class="intro">
+    <h2>Basic Hashcat Guide</h2>
+    <p>A typical hashcat command looks like this:</p>
+    <pre><code>hashcat -a &lt;attack mode&gt; -m &lt;hash type&gt; &lt;path to hash file&gt; &lt;path to wordlist&gt;</code></pre>
+    <p>The hash file and wordlist always come <em>after</em> the flags, and in that order: hashes first, wordlist second.</p>
+    <h3>Common Attack Modes (<code>-a</code>)</h3>
+    <table>
+        <tr><th>Mode</th><th>Name</th><th>Description</th></tr>
+        <tr><td>0</td><td>Straight / Dictionary</td><td>Tries each word in the wordlist once, as-is.</td></tr>
+        <tr><td>1</td><td>Combination</td><td>Combines words from two wordlists together.</td></tr>
+        <tr><td>3</td><td>Brute-force / Mask</td><td>Tries every combination of characters matching a defined pattern.</td></tr>
+        <tr><td>6 / 7</td><td>Hybrid</td><td>Combines a wordlist with a brute-force mask, appended or prepended.</td></tr>
+    </table>
+    <h3>Common Hash Modes (<code>-m</code>)</h3>
+    <table>
+        <tr><th>Mode</th><th>Hash Type</th></tr>
+        <tr><td>0</td><td>MD5</td></tr>
+        <tr><td>100</td><td>SHA-1</td></tr>
+        <tr><td>1000</td><td>NTLM</td></tr>
+        <tr><td>1400</td><td>SHA-256</td></tr>
+        <tr><td>3200</td><td>bcrypt</td></tr>
+    </table>
+    <p>Putting it together, cracking a file of MD5 hashes with a straight dictionary attack against rockyou.txt looks like:</p>
+    <pre><code>hashcat -a0 -m0 hashes.txt rockyou.txt</code></pre>
+ </section>
+
+ <section class="intro">
+    <h2>Challenge 1: Cracking an MD5 Hash</h2>
+    <p>Here's a hash recovered from a compromised system. It's exactly 32 hex characters long.</p>
+    <div class="hash-box">ec3099ac03b64e75df91e7632e1f2550</div>
+    <p>Use what you've learned above to identify the hash type, pick the right hashcat command, and recover the plaintext password.</p>
+ </section>
+
+ <!-- Quiz Part 1: q1–q3 -->
+ <section class="quiz-container" id="quizPart1"></section>
+
+ <section class="intro">
+    <h2>Before You Continue</h2>
+    <p>That hash cracked quickly — MD5 is fast to compute, which cuts both ways: convenient for legitimate use, but also easy for an attacker (or a competitor) to brute-force or dictionary-attack at high speed. Not every hash you'll encounter is that short, though.</p>
+ </section>
+
+ <section class="intro">
+    <h2>Challenge 2: Identifying and Cracking a Longer Hash</h2>
+    <p>Here's a second hash, pulled from a different part of the same system. Count the characters before assuming it's the same type as the last one.</p>
+    <div class="hash-box">1c8bfe8f801d79745c4631d09fff36c82aa37fc4cce4fc946683d7b336b63032</div>
+    <p>Use the hash type table from earlier in this MAT to identify the algorithm, then crack it the same way as before.</p>
+ </section>
+
+ <!-- Quiz Part 2: q4–q5, submit button, and result -->
+ <section class="quiz-container" id="quizPart2"></section>
+
+ <section class="intro">
+    <h2>Where to go next...</h2>
+    <p>If you liked this, try out <strong>The Epic Adventures of Crypto Cat Caticus Catanius!</strong></p>
+ </section>
+
+ <script>
+    // ----- Dark mode toggle -----
+    const themeToggle = document.getElementById('themeToggle');
+
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggle.textContent = '☀️ Light Mode';
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeToggle.textContent = '🌙 Dark Mode';
+      }
+    }
+
+    const savedTheme = localStorage.getItem('cdctf-theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+      applyTheme(newTheme);
+      localStorage.setItem('cdctf-theme', newTheme);
+    });
+
+    // ----- Quiz -----
+    const questions = [
+      {
+        id: 'q1',
+        type: 'mc',
+        title: 'Step 1: Choosing a Tool',
+        description: 'What is widely considered the best tool for cracking passwords?',
+        instructions: 'Select the best answer.',
+        options: [
+          { value: 'a', label: 'CyberChef' },
+          { value: 'b', label: 'ratcat' },
+          { value: 'c', label: 'hashcat' },
+          { value: 'd', label: 'hashes.com' }
+        ],
+        answer: 'c'
+      },
+      {
+        id: 'q2',
+        type: 'mc',
+        title: 'Step 2: Constructing a Hashcat Command',
+        description: 'rockyou.txt is a large text file that includes many of the most common passwords. It is extremely useful for password cracking challenges. <code>-a0</code> puts hashcat into simple wordlist mode, in which each password in the wordlist is simply tried against the hashes once. <code>-m0</code> determines the type of hash to try cracking, in this case md5. Which of these is a valid hashcat command?',
+        instructions: 'Select the best answer.',
+        options: [
+          { value: 'a', label: '<code>hashcat -0 a -0 m &lt;path to hashes file&gt; &lt;path to rockyou.txt&gt;</code>' },
+          { value: 'b', label: '<code>ratcat -a0 -m0 &lt;path to hashes file&gt; &lt;path to rockyou.txt&gt;</code>' },
+          { value: 'c', label: '<code>hashcat -a0 -m0 &lt;path to hashes file&gt; &lt;path to rockyou.txt&gt;</code>' },
+          { value: 'd', label: '<code>hashcat -a0 -m0 &lt;path to rockyou.txt&gt; &lt;path to hashes file&gt;</code>' }
+        ],
+        answer: 'c'
+      },
+      {
+        id: 'q3',
+        type: 'freeresponse',
+        title: 'Step 3: Cracking the Hash',
+        description: 'What is the result of cracking the given hash (<code>ec3099ac03b64e75df91e7632e1f2550</code>) using <code>hashcat -a0 -m0</code> against <code>rockyou.txt</code>?',
+        instructions: 'Type your answer in the box below.',
+        answer: ['greatJOB']
+      },
+      {
+        id: 'q4',
+        type: 'mc',
+        title: 'Step 4: Identifying the Second Hash',
+        description: 'The second hash (<code>1c8bfe8f801d79745c4631d09fff36c82aa37fc4cce4fc946683d7b336b63032</code>) is 64 hex characters long. Which hashcat mode number should you use to crack it?',
+        instructions: 'Select the best answer.',
+        options: [
+          { value: 'a', label: '<code>-m0</code> (MD5)' },
+          { value: 'b', label: '<code>-m100</code> (SHA-1)' },
+          { value: 'c', label: '<code>-m1400</code> (SHA-256)' },
+          { value: 'd', label: '<code>-m3200</code> (bcrypt)' }
+        ],
+        answer: 'c'
+      },
+      {
+        id: 'q5',
+        type: 'freeresponse',
+        title: 'Step 5: Cracking the Second Hash',
+        description: 'Using the correct hash mode from the previous step and the command <code>hashcat -a0 -m1400 hashes.txt rockyou.txt</code>, what is the plaintext password for <code>1c8bfe8f801d79745c4631d09fff36c82aa37fc4cce4fc946683d7b336b63032</code>?',
+        instructions: 'Type your answer in the box below.',
+        answer: ['letmein']
+      }
+    ];
+
+    const groupBoundaries = [3, questions.length];
+
+    function renderQuestionGroup(group, startIndex) {
+      return group.map((q, i) => {
+        let bodyHtml = '';
+
+        if (q.type === 'mc') {
+          bodyHtml = q.options.map(opt =>
+            `<label><input type="radio" name="${q.id}" value="${opt.value}"> ${opt.label}</label>`
+          ).join('\n');
+        } else if (q.type === 'checkbox') {
+          bodyHtml = q.options.map(opt =>
+            `<label><input type="checkbox" name="${q.id}" value="${opt.value}"> ${opt.label}</label>`
+          ).join('\n');
+        } else if (q.type === 'freeresponse') {
+          bodyHtml = `<input type="text" name="${q.id}" class="quiz-text-input" placeholder="Your answer">`;
+        }
+
+        return `
+          <div class="quiz-question" data-question="${q.id}">
+            <p class="quiz-question-title">${q.title}</p>
+            <p class="quiz-description">${q.description}</p>
+            <p class="quiz-instructions">${q.instructions}</p>
+            <div class="quiz-options">
+              ${bodyHtml}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderQuiz() {
+      const group1 = questions.slice(0, groupBoundaries[0]);
+      const group2 = questions.slice(groupBoundaries[0], groupBoundaries[1]);
+
+      document.getElementById('quizPart1').innerHTML = renderQuestionGroup(group1, 0);
+
+      document.getElementById('quizPart2').innerHTML =
+        renderQuestionGroup(group2, groupBoundaries[0]) +
+        `<button type="button" id="quizSubmit" class="quiz-submit">Submit</button>
+         <div id="quizResult" class="quiz-result"></div>`;
+
+      document.getElementById('quizSubmit').addEventListener('click', scoreQuiz);
+    }
+
+    function scoreQuiz() {
+      let score = 0;
+      const total = questions.length;
+
+      document.querySelectorAll('.quiz-question').forEach(q => {
+        q.classList.remove('incorrect-question');
+      });
+
+      questions.forEach(q => {
+        let isCorrect = false;
+
+        if (q.type === 'mc') {
+          const selected = document.querySelector(`input[name="${q.id}"]:checked`);
+          isCorrect = selected && selected.value === q.answer;
+        } else if (q.type === 'checkbox') {
+          const checked = Array.from(document.querySelectorAll(`input[name="${q.id}"]:checked`)).map(el => el.value);
+          isCorrect =
+            checked.length === q.answer.length &&
+            q.answer.every(val => checked.includes(val));
+        } else if (q.type === 'freeresponse') {
+          const input = document.querySelector(`input[name="${q.id}"]`);
+          const value = input ? input.value.trim() : '';
+          isCorrect = q.answer.includes(value);
+        }
+
+        if (isCorrect) {
+          score++;
+        } else {
+          const questionEl = document.querySelector(`.quiz-question[data-question="${q.id}"]`);
+          if (questionEl) questionEl.classList.add('incorrect-question');
+        }
+      });
+
+      const resultEl = document.getElementById('quizResult');
+
+      if (score === total) {
+        resultEl.textContent = 'Congratulations! You completed the CDCTF Password Cracking Training MAT! Here is your flag to enter on the CTFd platform: cdctf{R@tc4t_rUL3z!}';
+        resultEl.className = 'quiz-result correct';
+      } else {
+        resultEl.textContent = `You scored ${score} out of ${total}. Incorrect questions are highlighted.`;
+        resultEl.className = 'quiz-result incorrect';
+      }
+    }
+
+    renderQuiz();
+ </script>
+</body>
+</html>
