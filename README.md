@@ -3,4 +3,4 @@
 - [CDCTF 2026 — 32 solved challenges](CDCTF-2026/README.md)
 - [UITRecuit2026 — top1koth_recuit2026](UITRecuit2026/README.md)
 - [SunshineCTF — solved challenges](SunshineCTF/README.md)
-- [FortIDCTF 2026 â€” 3 solved, 3 research notes](FortIDCTF-2026/README.md)
+- [FortIDCTF 2026 — 3 solved, 3 research notes](FortIDCTF-2026/README.md)
